@@ -171,7 +171,7 @@ client.on('ready', () => {
     }, 120_000);
 
     sync();
-    setInterval(sync, 15000);
+    setInterval(sync, 5000);
 
     const { version } = require('./package.json');
     client.user.setActivity(`Vinted BOT | v${version}`);
