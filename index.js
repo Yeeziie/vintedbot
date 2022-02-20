@@ -96,6 +96,7 @@ const syncSubscription = (sub) => {
                     .addField('Pays & Ville', `:flag_${item.user.country_iso_code.toLowerCase()}: ${item.city}` || 'vide', true)
                     .addField('Condition', item.status || 'vide', true)
                     .addField('Taille', item.size || 'vide', true)
+                    .addField('Description', (item.description.length > 1024 ? (item.description.substring(0, 1020) + "...") : item.description) || 'vide', false)
                 client.channels.cache.get(sub.channelID)?.send({ embeds: [embed], components: [
                     new Discord.MessageActionRow()
                         .addComponents([
