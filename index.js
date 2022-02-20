@@ -96,7 +96,6 @@ const syncSubscription = (sub) => {
                     .addField('Pays & Ville', `:flag_${item.user.country_iso_code.toLowerCase()}: ${item.city}` || 'vide', true)
                     .addField('Condition', item.status || 'vide', true)
                     .addField('Taille', item.size || 'vide', true)
-                    .addField('Description', (item.description.length > 1024 ? (item.description.substring(0, 1020) + "...") : item.description) || 'vide', false)
                 client.channels.cache.get(sub.channelID)?.send({ embeds: [embed], components: [
                     new Discord.MessageActionRow()
                         .addComponents([
@@ -155,10 +154,6 @@ client.on('ready', () => {
     });
     db.set('is_first_sync', true);
 
-    const messages = [
-        `🕊️ Ce projet libre et gratuit demande du temps. Si vous en avez les moyens, n'hésitez pas à soutenir le développement avec un don ! https://paypal.me/andr0z\n`,
-        `🤟 Le saviez-vous ? Nous proposons notre propre version du bot en ligne 24/24 7/7 sans que vous n'ayez besoin de vous soucier de quoi que ce soit ! https://distrobot.fr\n`
-    ];
     let idx = 0;
     const donate = () => console.log(messages[ idx % 2 ]);
     setTimeout(() => {
@@ -170,7 +165,7 @@ client.on('ready', () => {
     }, 120_000);
 
     sync();
-    setInterval(sync, 500);
+    setInterval(sync, 1000);
 
     const { version } = require('./package.json');
     client.user.setActivity(`Vinted BOT | v${version}`);
